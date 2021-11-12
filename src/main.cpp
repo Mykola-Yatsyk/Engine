@@ -1,11 +1,11 @@
-#include "Window.h"
+#include "Application.h"
 
 int main(int argc, char* argv[])
 {
-	Log(LOG::MESSAGE).print("Run Application");
+	Log(LOG::MESSAGE).print("Start Application");
 
-	Window window;
-	window.createWindow("Application");
+	Application app;
+	app.createWindow("Application");
 
 	return EXIT_SUCCESS;
 }

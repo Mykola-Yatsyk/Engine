@@ -6,6 +6,7 @@ LRESULT CALLBACK Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 	{
 	case WM_CREATE:
 		Log(LOG::WM).print("WM_CREATE");
+		m_render->init();
 		break;
 
 	case WM_CLOSE:
@@ -29,9 +30,11 @@ LRESULT CALLBACK WindowProcStatic(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPa
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-Window::Window()
+Window::Window(Render* render)
 {
 	Log(LOG::CLASS);
+
+	m_render = render;
 }
 
 Window::~Window()
@@ -73,14 +76,18 @@ void Window::createWindow(const char* title)
 
 	MSG msg;
 
-	while (true)
+	while (m_render->isRun())
 	{
 		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
 		{
-			if (msg.message == WM_QUIT) break;
+			if (msg.message == WM_QUIT) m_render->exit();
 			else DispatchMessage(&msg);
 		}
-		else SwapBuffers(hDC);
+		else
+		{
+			m_render->draw();
+			SwapBuffers(hDC);
+		}
 	}
 
 	wglMakeCurrent(NULL, NULL);
