@@ -14,7 +14,7 @@ private:
 public:
 	Window();
 	void createWindow(const char* title);
-	~Window();
+	virtual ~Window();
 };
 
 #endif

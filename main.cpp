@@ -1,9 +1,9 @@
-#include "Window.h"
+#include "Application.h"
 
 int main(int argc, char* argv[])
 {
-	Window window;
-	window.createWindow("Application");
+	Application app;
+	app.createWindow("Application");
 
 	return EXIT_SUCCESS;
 }
