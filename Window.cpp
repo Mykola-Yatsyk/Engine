@@ -46,19 +46,25 @@ void Window::createWindow(const char* title)
 	HGLRC hGLRC = wglCreateContext(hDC);
 	wglMakeCurrent(hDC, hGLRC);
 
+	GetRender.init();
+
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 
 	MSG msg;
 
-	bool run = true;
-	while (run)
+	GetRender.run();
+	while (GetRender.isRun())
 	{
 		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
 		{
-			if (msg.message == WM_QUIT) run = false;
+			if (msg.message == WM_QUIT) GetRender.exit();
 			else DispatchMessage(&msg);
 		}
-		else SwapBuffers(hDC);
+		else
+		{
+			GetRender.draw();
+			SwapBuffers(hDC);
+		}
 	}
 
 	wglMakeCurrent(NULL, NULL);

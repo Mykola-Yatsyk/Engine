@@ -1,10 +1,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <Windows.h>
-#include <gl/GL.h>
-
-#pragma comment(lib, "opengl32.lib")
+#include "Render.h"
 
 class Window
 {
