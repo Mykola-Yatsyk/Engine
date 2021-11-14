@@ -16,8 +16,9 @@ LRESULT CALLBACK Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-Window::Window()
+Window::Window(Engine* engine)
 {
+	GetRender.setEngine(engine);
 }
 
 void Window::createWindow(const char* title)

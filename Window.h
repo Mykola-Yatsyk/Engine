@@ -9,7 +9,7 @@ private:
 	static LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 public:
-	Window();
+	Window(Engine* engine);
 	void createWindow(const char* title);
 	virtual ~Window();
 };

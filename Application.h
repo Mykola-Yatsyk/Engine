@@ -3,7 +3,7 @@
 
 #include "Window.h"
 
-class Application : public Window
+class Application : public Engine, public Window
 {
 public:
 	Application();

@@ -1,6 +1,6 @@
 #include "Render.h"
 
-Render::Render() : m_run(false)
+Render::Render() : m_run(false), m_engine(nullptr)
 {
 }
 
