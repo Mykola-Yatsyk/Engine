@@ -12,6 +12,7 @@ private:
 	inline void malloc(unsigned short length);
 	inline unsigned short getLength(const char* string);
 	inline void copy(char* destination, const char* source);
+	inline String toString(const int& value);
 
 public:
 	String();
@@ -22,8 +23,12 @@ public:
 	String& operator =(const String& string);
 	String& operator +=(const String& string);
 	
+	String& operator =(const int& value);
+	String& operator +=(const int& value);
+	
 	String operator +(const char* string);
 	String operator +(const String& string);
+	String operator +(const int& value);
 
 	bool operator ==(const String& string);
 	bool operator !=(const String& string);

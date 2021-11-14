@@ -26,6 +26,41 @@ void String::copy(char* destination, const char* source)
 	while (*destination++ = *source++);
 }
 
+String String::toString(const int& value)
+{
+	unsigned short length = 0;
+	char* string = new char[12];
+
+	int number = value;
+	int sign = number;
+
+	if (number < 0) number = -number;
+	do {
+		string[length++] = number % 10 + '0';
+	} while ((number /= 10) > 0);
+
+	if (sign < 0) string[length++] = '-';
+	string[length] = '\0';
+
+	char temp;
+	char* begin = string;
+	char* end = string + length - 1;
+	while (begin < end) {
+		temp = *begin;
+		*begin = *end;
+		*end = temp;
+		begin++;
+		end--;
+	}
+	
+	String newString(string);
+
+	delete[] string;
+	string = nullptr;
+
+	return newString;
+}
+
 String::String()
 {
 	malloc(0);
@@ -72,6 +107,16 @@ String& String::operator +=(const String& string)
 	return *this;
 }
 
+String& String::operator =(const int& value)
+{
+	return operator =(toString(value));
+}
+
+String& String::operator +=(const int& value)
+{
+	return operator +=(toString(value));
+}
+
 String String::operator +(const char* string)
 {
 	return String(*this, string, getLength(string));
@@ -80,6 +125,11 @@ String String::operator +(const char* string)
 String String::operator +(const String& string)
 {
 	return String(*this, string.m_string, string.m_length);
+}
+
+String String::operator +(const int& value)
+{
+	return operator +(toString(value));
 }
 
 bool String::operator ==(const String& string)
