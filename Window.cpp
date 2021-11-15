@@ -4,11 +4,17 @@ LRESULT CALLBACK Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 {
 	switch (msg)
 	{
+	case WM_CREATE:
+		Log(LOG::WM).print("WM_CREATE");
+		break;
+
 	case WM_CLOSE:
+		Log(LOG::WM).print("WM_CLOSE");
 		DestroyWindow(hWnd);
 		break;
 
 	case WM_DESTROY:
+		Log(LOG::WM).print("WM_DESTROY");
 		PostQuitMessage(EXIT_SUCCESS);
 		break;
 	}
@@ -18,6 +24,7 @@ LRESULT CALLBACK Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 
 Window::Window(Engine* engine)
 {
+	Log(LOG::CLASS);
 	GetRender.setEngine(engine);
 }
 
@@ -75,4 +82,5 @@ void Window::createWindow(const char* title)
 
 Window::~Window()
 {
+	Log(LOG::CLASS);
 }
