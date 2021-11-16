@@ -24,6 +24,7 @@ public:
 	static Render& getRender();
 
 	void init();
+	void setViewPort(const unsigned short width, const unsigned short height);
 	void draw();
 
 	~Render();

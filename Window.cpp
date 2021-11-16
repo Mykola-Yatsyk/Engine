@@ -8,6 +8,10 @@ LRESULT CALLBACK Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
 		Log(LOG::WM).print("WM_CREATE");
 		break;
 
+	case WM_SIZE:
+		GetRender.setViewPort(LOWORD(lParam), HIWORD(lParam));
+		break;
+
 	case WM_CLOSE:
 		Log(LOG::WM).print("WM_CLOSE");
 		DestroyWindow(hWnd);
